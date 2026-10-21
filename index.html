@@ -4,10 +4,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dreamy Roblox</title>
+  <title>Dreamy Roblox ☁️</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", sans-serif;
+      color: #eaf4ff;
+      background:
+        radial-gradient(ellipse at 20% 10%, #234c85 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 70%, #182e64 0%, transparent 45%),
+        #080f29;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, white 98%, transparent),
+        radial-gradient(2px 2px at 70% 20%, #a8d9ff 98%, transparent),
+        radial-gradient(1px 1px at 40% 80%, white 98%, transparent),
+        radial-gradient(2px 2px at 85% 60%, #b7c9ff 98%, transparent);
+      background-size: 180px 160px;
+      opacity: .65;
+    }
+
+    header, main, footer {
+      position: relative;
+      width: min(900px, 90%);
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 0;
+      gap: 12px;
+    }
+
+    .logo {
+      color: #b9dfff;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .pill {
+      border: 1px solid #6f9bce;
+      border-radius: 30px;
+      padding: 8px 13px;
+      color: #d8eaff;
+      font-size: .85rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 0 45px;
+    }
+
+    .moon { font-size: 3.5rem; }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      margin: 15px 0;
+      letter-spacing: -1px;
+    }
+
+    h1 span { color: #91caff; }
+
+    .subtitle {
+      color: #bdcce8;
+      line-height: 1.8;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .panel {
+      background: rgba(22, 39, 79, .72);
+      border: 1px solid rgba(151, 195, 255, .28);
+      border-radius: 22px;
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: 0 12px 50px #02081e55;
+    }
+
+    .screen {
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, #142b55, #101831);
+      border: 1px dashed #6087bc;
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    .screen .emoji { font-size: 3rem; }
+
+    .screen p { color: #bdcce8; line-height: 1.6; }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 20px;
+      border-radius: 30px;
+      background: #8ccaff;
+      color: #101b3a;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    h2 { color: #c5e2ff; }
+
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      color: #8fa7cd;
+      font-size: .85rem;
+    }
+
+    .clouds {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 10px;
+      opacity: .8;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to my little corner of the sky ☁️</h1>
-  <p>A dreamy place to watch my Roblox adventures.</p>
+  <div class="stars"></div>
+
+  <header>
+    <div class="logo">☁ Dreamy Roblox</div>
+    <div class="pill">✦ a little corner of the sky</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="moon">🌙</div>
+      <h1>Welcome to my <span>dreamscape</span></h1>
+      <p class="subtitle">
+        A cozy little place for Roblox adventures,
+        late-night gaming, and starlit skies.
+      </p>
+      <div class="clouds">☁ ✧ ☁ ✦ ☁</div>
+    </section>
+
+    <section class="panel">
+      <h2>✦ Live from my world</h2>
+      <div class="screen">
+        <div>
+          <div class="emoji">🎮</div>
+          <h3>Your livestream will appear here</h3>
+          <p>This space is waiting for your Roblox screen.<br>
+          We'll connect the live stream in a later step!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>☾ About this little space</h2>
+      <p class="subtitle">
+        Welcome, dreamer! Get comfy, watch some Roblox,
+        and enjoy the midnight-blue skies. ✨
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    made of stardust &amp; pixels ✦ sweet dreams, dreamer
+  </footer>
 </body>
 </html>
