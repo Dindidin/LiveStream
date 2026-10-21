@@ -1,584 +1,298 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070b17">
-  <title>Dindins // Deep Space Archive</title>
+  <title>Craig Tucker</title>
 
   <style>
-    :root {
-      --bg: #070b17;
-      --panel: #0c1425;
-      --panel-light: #101c31;
-      --blue: #78a9e8;
-      --bright: #c5e1ff;
-      --muted: #7285a5;
-      --line: #263954;
-      --text: #dce8f8;
-    }
-
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      background:
-        radial-gradient(ellipse at 50% 0%, #142443 0%, transparent 42%),
-        radial-gradient(ellipse at 90% 60%, #101b36 0%, transparent 35%),
-        var(--bg);
-      font-family: "Courier New", monospace;
-      font-size: 14px;
-      line-height: 1.7;
+      background: #050914;
+      color: #cbd5e8;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Background stars */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, #b9d7ff 99%, transparent),
+        radial-gradient(1px 1px at 80% 35%, #ffffff 99%, transparent),
+        radial-gradient(2px 2px at 60% 75%, #7698d5 99%, transparent),
+        radial-gradient(1px 1px at 35% 85%, #ffffff 99%, transparent),
+        radial-gradient(1px 1px at 90% 90%, #7698d5 99%, transparent);
+      background-size: 230px 230px;
+      opacity: 0.5;
+      z-index: -1;
     }
 
     a {
-      color: var(--bright);
+      color: #8daee8;
+      text-decoration: none;
     }
 
-    a:focus-visible {
-      outline: 2px solid var(--bright);
-      outline-offset: 5px;
+    a:hover {
+      color: #ffffff;
     }
 
-    .stars {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: .5;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, #fff 98%, transparent),
-        radial-gradient(1px 1px at 75% 12%, #b9d9ff 98%, transparent),
-        radial-gradient(2px 2px at 42% 55%, #fff 98%, transparent),
-        radial-gradient(1px 1px at 88% 83%, #a6caff 98%, transparent),
-        radial-gradient(1px 1px at 23% 76%, #fff 98%, transparent);
-      background-size: 190px 210px;
-    }
-
-    .shell {
-      width: min(1000px, 91%);
-      margin: auto;
-    }
-
-    .topbar {
+    header {
+      padding: 22px 8%;
+      border-bottom: 1px solid #18243a;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
     }
 
-    .brand {
-      color: var(--bright);
+    .logo {
+      color: #e2eaff;
       font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .status {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-align: right;
-    }
-
-    .status::before {
-      content: "● ";
-      color: #7399c9;
+      letter-spacing: 3px;
+      font-size: 14px;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 22px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
+      font-size: 12px;
     }
 
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    nav a:hover {
-      color: var(--bright);
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 65px 24px;
     }
 
     .hero {
-      position: relative;
-      min-height: 390px;
+      min-height: 330px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 65px 0 55px;
-      overflow: hidden;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      border-bottom: 1px solid #18243a;
+      padding-bottom: 45px;
     }
 
-    .eyebrow {
-      color: var(--blue);
+    .hero-text {
+      flex: 1;
+    }
+
+    .label {
+      color: #708bb9;
       font-size: 11px;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-    }
-
-    h1, h2, h3, p {
-      overflow-wrap: anywhere;
     }
 
     h1 {
-      position: relative;
-      z-index: 1;
-      margin: 12px 0;
-      color: #e2eeff;
-      font-size: clamp(35px, 7vw, 68px);
-      line-height: 1.08;
-      letter-spacing: -3px;
+      color: #edf3ff;
+      font-size: clamp(38px, 7vw, 68px);
+      margin: 15px 0;
+      letter-spacing: -2px;
     }
 
-    h1 span {
-      display: block;
-      color: var(--blue);
+    .subtitle {
+      color: #71809a;
+      font-size: 13px;
+      letter-spacing: 1px;
     }
 
-    .intro {
-      max-width: 540px;
-      color: #9aacc8;
-    }
-
-    .orbit {
-      position: absolute;
-      width: 190px;
-      height: 190px;
-      right: 7%;
-      top: 75px;
-      border: 1px solid #344b70;
-      border-radius: 50%;
-      opacity: .75;
-    }
-
-    .orbit::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 80px;
-      left: -36px;
-      top: 53px;
-      border: 1px solid #5578a6;
-      border-radius: 50%;
-      transform: rotate(-28deg);
-    }
-
-    .planet {
-      position: absolute;
-      width: 66px;
-      height: 66px;
-      left: 62px;
-      top: 61px;
-      border-radius: 50%;
-      background: linear-gradient(140deg, #b1d3f5, #4c6892 55%, #1a2b48);
-      box-shadow: 0 0 35px #5486c322;
-    }
-
-    .section-label {
+    .portrait {
+      width: 240px;
+      height: 260px;
+      flex-shrink: 0;
+      border: 1px solid #243958;
+      background:
+        radial-gradient(ellipse at 50% 35%, #172b4c 0%, #0a1224 55%, #050914 100%);
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 12px;
-      margin: 0 0 18px;
-      color: var(--blue);
+      color: #657da5;
       font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      text-align: center;
+      padding: 15px;
     }
 
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-    }
-
-    .panel {
-      margin: 22px 0;
-      padding: clamp(18px, 4vw, 30px);
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, #0d1729ee, #080f1fee);
-      box-shadow: 0 18px 60px #00000020;
-    }
-
-    .live-heading {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
+    section {
+      padding: 35px 0;
+      border-bottom: 1px solid #18243a;
     }
 
     h2 {
-      margin: 0 0 18px;
-      color: var(--bright);
-      font-size: 18px;
-      letter-spacing: 1px;
+      color: #dce7fb;
+      font-size: 13px;
+      font-weight: normal;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 0 0 22px;
     }
 
-    .live-tag {
-      border: 1px solid #425f82;
-      padding: 3px 9px;
-      color: #a9d1ff;
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-
-    .screen {
-      display: grid;
-      place-items: center;
-      min-height: 255px;
-      padding: 25px;
-      text-align: center;
-      border: 1px solid #263e5d;
-      background:
-        radial-gradient(ellipse at center, #14233c 0%, #080e1c 72%);
-    }
-
-    .screen-symbol {
-      color: #7299c9;
-      font-size: 40px;
-    }
-
-    .screen h3 {
-      color: var(--bright);
-      font-size: 16px;
-    }
-
-    .screen p {
-      max-width: 410px;
-      color: var(--muted);
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 11px 18px;
-      border: 1px solid #88b6ed;
-      background: #a9cffa;
-      color: #091224;
-      font-weight: bold;
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: .2s;
-    }
-
-    .button:hover {
-      background: #e0efff;
-      transform: translateY(-2px);
-    }
-
-    .small-note {
-      margin-top: 15px;
-      color: #647795;
-      font-size: 11px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .profile-mark {
-      display: grid;
-      place-items: center;
-      min-height: 200px;
-      margin-bottom: 20px;
-      border: 1px solid #263e5d;
-      background:
-        radial-gradient(circle at center, #263d60 0%, #111d32 35%, #090f1d 75%);
-      overflow: hidden;
-    }
-
-    .profile-mark .hat {
-      position: relative;
-      width: 92px;
-      height: 48px;
-      margin-top: 28px;
-      border-radius: 50% 50% 12% 12%;
-      background: #315a93;
-      box-shadow: 0 -8px 28px #6493cc22;
-    }
-
-    .profile-mark .hat::after {
-      content: "";
-      position: absolute;
-      width: 125px;
-      height: 14px;
-      left: -17px;
-      bottom: -5px;
-      border-radius: 50%;
-      background: #254574;
-      border: 1px solid #5276a5;
-    }
-
-    .profile-caption {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-align: center;
+    .about {
+      max-width: 580px;
+      color: #8d9ab1;
+      font-size: 14px;
+      line-height: 1.8;
     }
 
     .facts {
-      margin: 0;
-    }
-
-    .facts div {
       display: grid;
-      grid-template-columns: 95px minmax(0, 1fr);
-      gap: 10px;
-      padding: 9px 0;
-      border-bottom: 1px solid #1b2b43;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
-    .facts dt {
-      color: var(--muted);
+    .fact {
+      border: 1px solid #1b2941;
+      background: #080f1d;
+      padding: 18px;
     }
 
-    .facts dd {
-      margin: 0;
-      color: #c9d9ef;
-    }
-
-    .quote {
-      margin: 0;
-      padding: 20px;
-      border-left: 2px solid #6289bc;
-      background: #0b1424;
-      color: #b8cce7;
-      font-size: 15px;
-    }
-
-    .quote small {
+    .fact small {
       display: block;
-      margin-top: 12px;
-      color: var(--muted);
+      color: #61799f;
       font-size: 10px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
     }
 
-    .coordinates {
-      color: #627998;
-      font-size: 11px;
+    .fact span {
+      color: #cbd5e8;
+      font-size: 13px;
+    }
+
+    .watch {
+      display: inline-block;
+      padding: 13px 20px;
+      margin-top: 5px;
+      border: 1px solid #344b70;
+      background: #101d32;
+      color: #dce7fb;
+      font-size: 12px;
       letter-spacing: 1px;
-      text-align: center;
-      padding: 25px 0;
+      transition: background 0.2s;
+    }
+
+    .watch:hover {
+      background: #1a2c49;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 24px 0 35px;
-      border-top: 1px solid var(--line);
-      color: #61718a;
-      font-size: 11px;
+      padding: 25px;
       text-align: center;
+      color: #44516a;
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
-
-    @media (max-width: 620px) {
-      .orbit {
-        right: -100px;
-        opacity: .32;
-      }
-
-      .hero {
-        min-height: 340px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 600px) {
+      header {
+        padding: 20px;
+        gap: 20px;
       }
 
       nav {
-        gap: 14px;
+        gap: 12px;
       }
 
-      .status {
-        max-width: 130px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
+      main {
+        padding: 40px 20px;
       }
 
-      *, *::before, *::after {
-        transition: none !important;
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      .portrait {
+        width: 100%;
+        height: 210px;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="stars" aria-hidden="true"></div>
+  <header>
+    <div class="logo">CRAIG TUCKER</div>
 
-  <header class="shell topbar">
-    <div class="brand">C.T. // ARCHIVE</div>
-    <div class="status">SIGNAL DETECTED</div>
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#facts">INFO</a>
+      <a href="#live">LIVE</a>
+    </nav>
   </header>
 
-  <nav class="shell" aria-label="Main navigation">
-    <a href="#home">[ HOME ]</a>
-    <a href="#live">[ LIVE FEED ]</a>
-    <a href="#profile">[ SUBJECT FILE ]</a>
-    <a href="#transmission">[ LOG ]</a>
-  </nav>
-
-  <main class="shell">
-    <section class="hero" id="home">
-      <div class="orbit" aria-hidden="true">
-        <div class="planet"></div>
+  <main>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="label">South Park · Character Archive</div>
+        <h1>Craig Tucker</h1>
+        <div class="subtitle">South Park, Colorado.</div>
       </div>
 
-      <div class="eyebrow">DEEP SPACE OBSERVATION // 001</div>
-
-      <h1>
-        CRAIG
-        <span>TUCKER.</span>
-      </h1>
-
-      <p class="intro">
-        A quiet signal from the edge of the universe.
-        Cold stars. Empty space. Absolutely no reason
-        to make this conversation longer than necessary.
-      </p>
-
-      <div class="eyebrow">LOCATION: UNKNOWN // MOOD: UNIMPRESSED</div>
-    </section>
-
-    <section class="panel" id="live">
-      <div class="live-heading">
-        <h2>01 // LIVE TRANSMISSION</h2>
-        <span class="live-tag">EXTERNAL SIGNAL</span>
+      <div class="portrait">
+        Add Craig's image here
       </div>
-
-      <div class="screen">
-        <div>
-          <div class="screen-symbol">⌁</div>
-          <h3>INCOMING GAMEPLAY FEED</h3>
-          <p>
-            Roblox transmission available.
-            Open the external viewer to watch the current broadcast.
-          </p>
-
-          <a
-            class="button"
-            href="https://demo.piik.tv/r/8381"
-            target="_blank"
-            rel="noopener noreferrer"
-          >[ OPEN LIVE FEED ]</a>
-
-          <div class="small-note">
-            VIEWER OPENS IN A NEW TAB // PIik ROOM
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="profile">
-      <div class="section-label">02 // SUBJECT FILE</div>
-
-      <div class="grid">
-        <div>
-          <div class="profile-mark" aria-label="Abstract blue hat-inspired symbol">
-            <div>
-              <div class="hat"></div>
-              <div class="profile-caption">SUBJECT C.T.</div>
-            </div>
-          </div>
-
-          <p class="eyebrow">OBSERVATION NOTE</p>
-          <p>
-            Frequently quiet. Rarely impressed.
-            Known to communicate with a minimum
-            number of unnecessary words.
-          </p>
-        </div>
-
-        <div>
-          <h2>CRAIG TUCKER</h2>
-
-          <dl class="facts">
-            <div>
-              <dt>ORIGIN</dt>
-              <dd>South Park, Colorado</dd>
-            </div>
-            <div>
-              <dt>SPECIES</dt>
-              <dd>Human</dd>
-            </div>
-            <div>
-              <dt>UNIFORM</dt>
-              <dd>Blue chullo hat, blue jacket</dd>
-            </div>
-            <div>
-              <dt>KNOWN FOR</dt>
-              <dd>Deadpan humor</dd>
-            </div>
-            <div>
-              <dt>THREAT LEVEL</dt>
-              <dd>Unbothered</dd>
-            </div>
-            <div>
-              <dt>STATUS</dt>
-              <dd>Probably wants to leave</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="transmission">
-      <div class="section-label">03 // RECOVERED LOG</div>
-
-      <blockquote class="quote">
-        This station is quiet. Keep it that way.
-        <small>UNOFFICIAL ARCHIVE NOTE // NOT A CANON QUOTE</small>
-      </blockquote>
-
-      <p>
-        Nothing moves beyond the window except distant stars.
-        The signal remains active. No further explanation
-        is currently available.
-      </p>
-    </section>
-
-    <div class="coordinates">
-      39° 45' N &nbsp; // &nbsp; DEEP SPACE SECTOR 04
-      <br>
-      SIGNAL STRENGTH: UNKNOWN
     </div>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        Craig Tucker is a South Park character known for his blue hat,
+        deadpan attitude, and signature middle finger.
+      </div>
+    </section>
+
+    <section id="facts">
+      <h2>Character Info</h2>
+
+      <div class="facts">
+        <div class="fact">
+          <small>Name</small>
+          <span>Craig Tucker</span>
+        </div>
+
+        <div class="fact">
+          <small>From</small>
+          <span>South Park</span>
+        </div>
+
+        <div class="fact">
+          <small>Theme</small>
+          <span>Midnight blue</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="live">
+      <h2>Live</h2>
+      <p class="about">Roblox gameplay stream.</p>
+
+      <a
+        class="watch"
+        href="https://demo.piik.tv/r/8381"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        WATCH LIVE ↗
+      </a>
+    </section>
   </main>
 
-  <footer class="shell">
-    <p>C.T. // DEEP SPACE ARCHIVE</p>
-    <p>UNOFFICIAL SOUTH PARK FAN PROJECT</p>
-    <p>MADE ON EARTH. OBSERVED FROM NOWHERE. ✦</p>
+  <footer>
+    CRAIG TUCKER · FAN WEBSITE
   </footer>
 </body>
 </html>
