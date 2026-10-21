@@ -45,6 +45,7 @@
       align-items: center;
       padding: 25px 0;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -105,7 +106,10 @@
 
     .screen .emoji { font-size: 3rem; }
 
-    .screen p { color: #bdcce8; line-height: 1.6; }
+    .screen p {
+      color: #bdcce8;
+      line-height: 1.6;
+    }
 
     .button {
       display: inline-block;
@@ -116,6 +120,12 @@
       color: #101b3a;
       font-weight: bold;
       text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      background: #c4e5ff;
+      transform: translateY(-2px);
     }
 
     h2 { color: #c5e2ff; }
@@ -160,9 +170,18 @@
       <div class="screen">
         <div>
           <div class="emoji">🎮</div>
-          <h3>Your livestream will appear here</h3>
-          <p>This space is waiting for your Roblox screen.<br>
-          We'll connect the live stream in a later step!</p>
+          <h3>🌙 Watch My Live Roblox Stream</h3>
+          <p>
+            Come hang out in my little dreamscape!
+            <br>
+            Click below to watch my gameplay live. ✨
+          </p>
+          <a
+            class="button"
+            href="https://demo.piik.tv/r/8381"
+            target="_blank"
+            rel="noopener noreferrer"
+          >✦ Watch Live ✦</a>
         </div>
       </div>
     </section>
@@ -181,3 +200,4 @@
   </footer>
 </body>
 </html>
+
