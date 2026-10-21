@@ -1,203 +1,584 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dreamy Roblox ☁️</title>
+  <meta name="theme-color" content="#070b17">
+  <title>Dindins // Deep Space Archive</title>
+
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #070b17;
+      --panel: #0c1425;
+      --panel-light: #101c31;
+      --blue: #78a9e8;
+      --bright: #c5e1ff;
+      --muted: #7285a5;
+      --line: #263954;
+      --text: #dce8f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Trebuchet MS", sans-serif;
-      color: #eaf4ff;
+      color: var(--text);
       background:
-        radial-gradient(ellipse at 20% 10%, #234c85 0%, transparent 40%),
-        radial-gradient(ellipse at 85% 70%, #182e64 0%, transparent 45%),
-        #080f29;
-      overflow-x: hidden;
+        radial-gradient(ellipse at 50% 0%, #142443 0%, transparent 42%),
+        radial-gradient(ellipse at 90% 60%, #101b36 0%, transparent 35%),
+        var(--bg);
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--bright);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--bright);
+      outline-offset: 5px;
     }
 
     .stars {
       position: fixed;
       inset: 0;
+      z-index: -1;
       pointer-events: none;
+      opacity: .5;
       background-image:
-        radial-gradient(2px 2px at 20% 30%, white 98%, transparent),
-        radial-gradient(2px 2px at 70% 20%, #a8d9ff 98%, transparent),
-        radial-gradient(1px 1px at 40% 80%, white 98%, transparent),
-        radial-gradient(2px 2px at 85% 60%, #b7c9ff 98%, transparent);
-      background-size: 180px 160px;
-      opacity: .65;
+        radial-gradient(1px 1px at 10% 20%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 75% 12%, #b9d9ff 98%, transparent),
+        radial-gradient(2px 2px at 42% 55%, #fff 98%, transparent),
+        radial-gradient(1px 1px at 88% 83%, #a6caff 98%, transparent),
+        radial-gradient(1px 1px at 23% 76%, #fff 98%, transparent);
+      background-size: 190px 210px;
     }
 
-    header, main, footer {
-      position: relative;
-      width: min(900px, 90%);
+    .shell {
+      width: min(1000px, 91%);
       margin: auto;
     }
 
-    header {
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 0;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 15px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .logo {
-      color: #b9dfff;
-      font-size: 1.2rem;
+    .brand {
+      color: var(--bright);
       font-weight: bold;
+      letter-spacing: 2px;
     }
 
-    .pill {
-      border: 1px solid #6f9bce;
-      border-radius: 30px;
-      padding: 8px 13px;
-      color: #d8eaff;
-      font-size: .85rem;
+    .status {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-align: right;
+    }
+
+    .status::before {
+      content: "● ";
+      color: #7399c9;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: var(--bright);
     }
 
     .hero {
-      text-align: center;
-      padding: 65px 0 45px;
+      position: relative;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 65px 0 55px;
+      overflow: hidden;
     }
 
-    .moon { font-size: 3.5rem; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p {
+      overflow-wrap: anywhere;
+    }
 
     h1 {
-      font-size: clamp(2.2rem, 7vw, 4rem);
-      margin: 15px 0;
-      letter-spacing: -1px;
+      position: relative;
+      z-index: 1;
+      margin: 12px 0;
+      color: #e2eeff;
+      font-size: clamp(35px, 7vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -3px;
     }
 
-    h1 span { color: #91caff; }
+    h1 span {
+      display: block;
+      color: var(--blue);
+    }
 
-    .subtitle {
-      color: #bdcce8;
-      line-height: 1.8;
-      max-width: 500px;
-      margin: auto;
+    .intro {
+      max-width: 540px;
+      color: #9aacc8;
+    }
+
+    .orbit {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: 7%;
+      top: 75px;
+      border: 1px solid #344b70;
+      border-radius: 50%;
+      opacity: .75;
+    }
+
+    .orbit::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 80px;
+      left: -36px;
+      top: 53px;
+      border: 1px solid #5578a6;
+      border-radius: 50%;
+      transform: rotate(-28deg);
+    }
+
+    .planet {
+      position: absolute;
+      width: 66px;
+      height: 66px;
+      left: 62px;
+      top: 61px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, #b1d3f5, #4c6892 55%, #1a2b48);
+      box-shadow: 0 0 35px #5486c322;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
     }
 
     .panel {
-      background: rgba(22, 39, 79, .72);
-      border: 1px solid rgba(151, 195, 255, .28);
-      border-radius: 22px;
-      padding: 24px;
-      margin: 20px 0;
-      box-shadow: 0 12px 50px #02081e55;
+      margin: 22px 0;
+      padding: clamp(18px, 4vw, 30px);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #0d1729ee, #080f1fee);
+      box-shadow: 0 18px 60px #00000020;
+    }
+
+    .live-heading {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: var(--bright);
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .live-tag {
+      border: 1px solid #425f82;
+      padding: 3px 9px;
+      color: #a9d1ff;
+      font-size: 10px;
+      letter-spacing: 1px;
     }
 
     .screen {
-      min-height: 240px;
       display: grid;
       place-items: center;
-      text-align: center;
-      background: linear-gradient(145deg, #142b55, #101831);
-      border: 1px dashed #6087bc;
-      border-radius: 15px;
+      min-height: 255px;
       padding: 25px;
+      text-align: center;
+      border: 1px solid #263e5d;
+      background:
+        radial-gradient(ellipse at center, #14233c 0%, #080e1c 72%);
     }
 
-    .screen .emoji { font-size: 3rem; }
+    .screen-symbol {
+      color: #7299c9;
+      font-size: 40px;
+    }
+
+    .screen h3 {
+      color: var(--bright);
+      font-size: 16px;
+    }
 
     .screen p {
-      color: #bdcce8;
-      line-height: 1.6;
+      max-width: 410px;
+      color: var(--muted);
     }
 
     .button {
       display: inline-block;
-      margin-top: 10px;
-      padding: 12px 20px;
-      border-radius: 30px;
-      background: #8ccaff;
-      color: #101b3a;
+      margin-top: 12px;
+      padding: 11px 18px;
+      border: 1px solid #88b6ed;
+      background: #a9cffa;
+      color: #091224;
       font-weight: bold;
       text-decoration: none;
-      transition: transform .2s, background .2s;
+      letter-spacing: 1px;
+      transition: .2s;
     }
 
     .button:hover {
-      background: #c4e5ff;
+      background: #e0efff;
       transform: translateY(-2px);
     }
 
-    h2 { color: #c5e2ff; }
-
-    footer {
-      padding: 30px 0;
-      text-align: center;
-      color: #8fa7cd;
-      font-size: .85rem;
+    .small-note {
+      margin-top: 15px;
+      color: #647795;
+      font-size: 11px;
     }
 
-    .clouds {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .profile-mark {
+      display: grid;
+      place-items: center;
+      min-height: 200px;
+      margin-bottom: 20px;
+      border: 1px solid #263e5d;
+      background:
+        radial-gradient(circle at center, #263d60 0%, #111d32 35%, #090f1d 75%);
+      overflow: hidden;
+    }
+
+    .profile-mark .hat {
+      position: relative;
+      width: 92px;
+      height: 48px;
+      margin-top: 28px;
+      border-radius: 50% 50% 12% 12%;
+      background: #315a93;
+      box-shadow: 0 -8px 28px #6493cc22;
+    }
+
+    .profile-mark .hat::after {
+      content: "";
+      position: absolute;
+      width: 125px;
+      height: 14px;
+      left: -17px;
+      bottom: -5px;
+      border-radius: 50%;
+      background: #254574;
+      border: 1px solid #5276a5;
+    }
+
+    .profile-caption {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
       text-align: center;
-      font-size: 1.5rem;
-      letter-spacing: 10px;
-      opacity: .8;
-      padding: 15px;
+    }
+
+    .facts {
+      margin: 0;
+    }
+
+    .facts div {
+      display: grid;
+      grid-template-columns: 95px minmax(0, 1fr);
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #1b2b43;
+    }
+
+    .facts dt {
+      color: var(--muted);
+    }
+
+    .facts dd {
+      margin: 0;
+      color: #c9d9ef;
+    }
+
+    .quote {
+      margin: 0;
+      padding: 20px;
+      border-left: 2px solid #6289bc;
+      background: #0b1424;
+      color: #b8cce7;
+      font-size: 15px;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .coordinates {
+      color: #627998;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 25px 0;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 24px 0 35px;
+      border-top: 1px solid var(--line);
+      color: #61718a;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 620px) {
+      .orbit {
+        right: -100px;
+        opacity: .32;
+      }
+
+      .hero {
+        min-height: 340px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      .status {
+        max-width: 130px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="stars"></div>
 
-  <header>
-    <div class="logo">☁ Dreamy Roblox</div>
-    <div class="pill">✦ a little corner of the sky</div>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="shell topbar">
+    <div class="brand">C.T. // ARCHIVE</div>
+    <div class="status">SIGNAL DETECTED</div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="moon">🌙</div>
-      <h1>Welcome to my <span>dreamscape</span></h1>
-      <p class="subtitle">
-        A cozy little place for Roblox adventures,
-        late-night gaming, and starlit skies.
+  <nav class="shell" aria-label="Main navigation">
+    <a href="#home">[ HOME ]</a>
+    <a href="#live">[ LIVE FEED ]</a>
+    <a href="#profile">[ SUBJECT FILE ]</a>
+    <a href="#transmission">[ LOG ]</a>
+  </nav>
+
+  <main class="shell">
+    <section class="hero" id="home">
+      <div class="orbit" aria-hidden="true">
+        <div class="planet"></div>
+      </div>
+
+      <div class="eyebrow">DEEP SPACE OBSERVATION // 001</div>
+
+      <h1>
+        CRAIG
+        <span>TUCKER.</span>
+      </h1>
+
+      <p class="intro">
+        A quiet signal from the edge of the universe.
+        Cold stars. Empty space. Absolutely no reason
+        to make this conversation longer than necessary.
       </p>
-      <div class="clouds">☁ ✧ ☁ ✦ ☁</div>
+
+      <div class="eyebrow">LOCATION: UNKNOWN // MOOD: UNIMPRESSED</div>
     </section>
 
-    <section class="panel">
-      <h2>✦ Live from my world</h2>
+    <section class="panel" id="live">
+      <div class="live-heading">
+        <h2>01 // LIVE TRANSMISSION</h2>
+        <span class="live-tag">EXTERNAL SIGNAL</span>
+      </div>
+
       <div class="screen">
         <div>
-          <div class="emoji">🎮</div>
-          <h3>🌙 Watch My Live Roblox Stream</h3>
+          <div class="screen-symbol">⌁</div>
+          <h3>INCOMING GAMEPLAY FEED</h3>
           <p>
-            Come hang out in my little dreamscape!
-            <br>
-            Click below to watch my gameplay live. ✨
+            Roblox transmission available.
+            Open the external viewer to watch the current broadcast.
           </p>
+
           <a
             class="button"
             href="https://demo.piik.tv/r/8381"
             target="_blank"
             rel="noopener noreferrer"
-          >✦ Watch Live ✦</a>
+          >[ OPEN LIVE FEED ]</a>
+
+          <div class="small-note">
+            VIEWER OPENS IN A NEW TAB // PIik ROOM
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="panel">
-      <h2>☾ About this little space</h2>
-      <p class="subtitle">
-        Welcome, dreamer! Get comfy, watch some Roblox,
-        and enjoy the midnight-blue skies. ✨
+    <section class="panel" id="profile">
+      <div class="section-label">02 // SUBJECT FILE</div>
+
+      <div class="grid">
+        <div>
+          <div class="profile-mark" aria-label="Abstract blue hat-inspired symbol">
+            <div>
+              <div class="hat"></div>
+              <div class="profile-caption">SUBJECT C.T.</div>
+            </div>
+          </div>
+
+          <p class="eyebrow">OBSERVATION NOTE</p>
+          <p>
+            Frequently quiet. Rarely impressed.
+            Known to communicate with a minimum
+            number of unnecessary words.
+          </p>
+        </div>
+
+        <div>
+          <h2>CRAIG TUCKER</h2>
+
+          <dl class="facts">
+            <div>
+              <dt>ORIGIN</dt>
+              <dd>South Park, Colorado</dd>
+            </div>
+            <div>
+              <dt>SPECIES</dt>
+              <dd>Human</dd>
+            </div>
+            <div>
+              <dt>UNIFORM</dt>
+              <dd>Blue chullo hat, blue jacket</dd>
+            </div>
+            <div>
+              <dt>KNOWN FOR</dt>
+              <dd>Deadpan humor</dd>
+            </div>
+            <div>
+              <dt>THREAT LEVEL</dt>
+              <dd>Unbothered</dd>
+            </div>
+            <div>
+              <dt>STATUS</dt>
+              <dd>Probably wants to leave</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="transmission">
+      <div class="section-label">03 // RECOVERED LOG</div>
+
+      <blockquote class="quote">
+        This station is quiet. Keep it that way.
+        <small>UNOFFICIAL ARCHIVE NOTE // NOT A CANON QUOTE</small>
+      </blockquote>
+
+      <p>
+        Nothing moves beyond the window except distant stars.
+        The signal remains active. No further explanation
+        is currently available.
       </p>
     </section>
+
+    <div class="coordinates">
+      39° 45' N &nbsp; // &nbsp; DEEP SPACE SECTOR 04
+      <br>
+      SIGNAL STRENGTH: UNKNOWN
+    </div>
   </main>
 
-  <footer>
-    made of stardust &amp; pixels ✦ sweet dreams, dreamer
+  <footer class="shell">
+    <p>C.T. // DEEP SPACE ARCHIVE</p>
+    <p>UNOFFICIAL SOUTH PARK FAN PROJECT</p>
+    <p>MADE ON EARTH. OBSERVED FROM NOWHERE. ✦</p>
   </footer>
 </body>
 </html>
-
